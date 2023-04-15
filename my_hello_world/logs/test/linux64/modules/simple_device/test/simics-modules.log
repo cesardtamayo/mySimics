@@ -1,0 +1,10 @@
+bp-manager	/home/cesar/simics/simics-6.0.157/linux64/lib/bp-manager.so
+tcf-agent	/home/cesar/simics/simics-6.0.157/linux64/lib/tcf-agent.so
+system-panel-interface	/home/cesar/simics/simics-6.0.157/linux64/lib/system-panel-interface.so
+old-breakpoint-manager	/home/cesar/simics/simics-6.0.157/linux64/lib/old-breakpoint-manager.so
+simple_device	/home/cesar/simics-projects/my_hello_world/linux64/lib/simple_device.so
+bp-manager	/home/cesar/simics/simics-6.0.157/linux64/lib/bp-manager.so
+tcf-agent	/home/cesar/simics/simics-6.0.157/linux64/lib/tcf-agent.so
+system-panel-interface	/home/cesar/simics/simics-6.0.157/linux64/lib/system-panel-interface.so
+old-breakpoint-manager	/home/cesar/simics/simics-6.0.157/linux64/lib/old-breakpoint-manager.so
+simple_device	/home/cesar/simics-projects/my_hello_world/linux64/lib/simple_device.so

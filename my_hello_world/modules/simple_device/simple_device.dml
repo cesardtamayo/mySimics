@@ -1,0 +1,37 @@
+
+dml 1.2;
+
+// Add more registers and reference each other in their functionality.
+// Flags with count_order or things like that
+
+device simple_device;
+parameter desc = "Simple device to learn Simics";
+parameter documentation = "Learning Simics following Model Builder User's Guide";
+
+attribute reads_count "An integer attribute that counts the number of reads."{
+    parameter allocate_type = "int32";
+
+    method after_set {
+        log "info": "Someone updated reads_count!";        
+    }
+
+    method after_get {
+        log "info": "Someone read reads_count!";        
+    }
+}
+
+bank regs{
+    register myregister size 4 @ 0x0000{
+
+        method read() -> (value){
+            log "info": "Reading from myregister ...";            
+            value = $this;                 
+            $reads_count = $reads_count + 1;       
+        }
+
+        method write(value) {
+            log "info": "Writing into myregister ...";
+            $this = value;
+        }
+    }
+}

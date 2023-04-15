@@ -1,0 +1,6 @@
+# Auto-generated file. Any changes will be overwritten!
+run-command-file "/home/cesar/simics/simics-6.0.157/targets/vacuum/vacuum.simics"
+
+load-module simple_device
+@SIM_create_object("simple_device", "dev1")
+phys_mem.add-map dev1.bank.regs 0x1000 0x100

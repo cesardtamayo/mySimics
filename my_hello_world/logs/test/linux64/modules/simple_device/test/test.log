@@ -1,0 +1,29 @@
+Entering directory `/home/cesar/simics-projects/my_hello_world/modules/simple_device/test'
+=BEGIN s-info-status
+Warning: The host CPU microarchitecture is older than Haswell/Gracemont, which is the minimum that Simics supports. Current processor name: 12th Gen Intel(R) Core(TM) i7-1270P
+Warning: The host CPU microarchitecture is older than Haswell/Gracemont, which is the minimum that Simics supports. Current processor name: 12th Gen Intel(R) Core(TM) i7-1270P
+Warning: The host CPU microarchitecture is older than Haswell/Gracemont, which is the minimum that Simics supports. Current processor name: 12th Gen Intel(R) Core(TM) i7-1270P
+Intel Simics 6 (build 6191 linux64) © 2023 Intel Corporation
+
+simple_device True True
+Information about obj_0000001ab6954f77 [class simple_device]
+============================================================
+*** Python script 's-info-status.py' failed: Python error in PyEval_Evalcode():
+Traceback (most recent call last):
+  File "s-info-status.py", line 23, in <module>
+    stest.fail(cmd + ' command failed: ' + str(e))
+  File "/disk2/mp/builds/mono-69052/core/linux64/lib/python-py3/stest.py", line 99, in fail
+stest.TestFailure: info command failed: Error getting info: too many values to unpack (expected 2)
+*** Unexpected error message, quitting. Clear sim->fail_on_warnings to change this behaviour.
+*** failed (exit-status 2) ***
+=END s-info-status 0.2 s
+=BEGIN s-simple_device
+Warning: The host CPU microarchitecture is older than Haswell/Gracemont, which is the minimum that Simics supports. Current processor name: 12th Gen Intel(R) Core(TM) i7-1270P
+Warning: The host CPU microarchitecture is older than Haswell/Gracemont, which is the minimum that Simics supports. Current processor name: 12th Gen Intel(R) Core(TM) i7-1270P
+Warning: The host CPU microarchitecture is older than Haswell/Gracemont, which is the minimum that Simics supports. Current processor name: 12th Gen Intel(R) Core(TM) i7-1270P
+Intel Simics 6 (build 6191 linux64) © 2023 Intel Corporation
+
+[dev.bank.regs info] read from counter
+[dev.bank.regs info] read from counter
+=END s-simple_device 0.2 s
+Leaving directory `/home/cesar/simics-projects/my_hello_world/modules/simple_device/test'
