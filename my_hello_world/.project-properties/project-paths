@@ -1,4 +1,4 @@
-project: /home/cesar/simics-projects/my_hello_world
+project: /home/cesar/mySimics/my_hello_world
 simics-root: /home/cesar/simics/simics-6.0.157
 simics-model-builder: /home/cesar/simics/simics-6.0.157
 mingw: None

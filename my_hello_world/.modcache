@@ -1,4 +1,8 @@
 version 6191
+dir /home/cesar/mySimics/my_hello_world
+dir /home/cesar/mySimics/my_hello_world/linux64/lib
+file 325152 1681843107 simple_device.so
+cap VER:5000;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1681842062;MOD:simple_device;ABI:6191;API:6;PY_VERSION:0;PY_MINOR_VERSION:0;HOSTTYPE:linux64;CLS:simple_device;MODULE_LOAD;THREADSAFE;
 dir /home/cesar/simics-projects/my_hello_world
 dir /home/cesar/simics-projects/my_hello_world/linux64/lib
 file 266928 1681468506 simple_device.so

@@ -2,4 +2,4 @@
 # this file will be overwritten by the project setup script
 SIMICS_BASE_PACKAGE="/home/cesar/simics/simics-6.0.157"
 export SIMICS_BASE_PACKAGE
-exec "/home/cesar/simics/simics-6.0.157/bin/workspace-setup" --project "/home/cesar/simics-projects/my_hello_world" "$@"
+exec "/home/cesar/simics/simics-6.0.157/bin/workspace-setup" --project "/home/cesar/mySimics/my_hello_world" "$@"
