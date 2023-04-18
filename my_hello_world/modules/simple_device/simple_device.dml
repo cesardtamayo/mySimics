@@ -8,6 +8,20 @@ device simple_device;
 parameter desc = "Simple device to learn Simics";
 parameter documentation = "Learning Simics following Model Builder User's Guide";
 
+// import "utility.dml";
+
+template myReadWrite{
+    method read() -> (value){            
+        value = $this;               
+    }
+
+    method write(value) {        
+        log "info": "updating value to %d", value;
+        $this = value;        
+    }
+}
+
+
 attribute reads_count "An integer attribute that counts the number of reads."{
     parameter allocate_type = "int32";
 
@@ -21,17 +35,53 @@ attribute reads_count "An integer attribute that counts the number of reads."{
 }
 
 bank regs{
-    register myregister size 4 @ 0x0000{
 
+    register config         size 4 @ 0x0000 {
+        field EN    @[0] is (myReadWrite) "Enabled";
+        field SEL   @[2:1] "Register selection" {
+            method write(value){
+                log "info": "Selecting register number %i", value;                
+                switch(value){
+                    case 0:
+                        $outputRegister = $inputRegister0;
+                        break;
+                    case 1:
+                        $outputRegister = $inputRegister1;
+                        break;
+                    case 2:
+                        $outputRegister = $inputRegister2;
+                        break;
+                    case 3:
+                        $outputRegister = $inputRegister3;
+                        break;
+                    default:
+                        log "error": "Invalid register selection.";
+                }
+            }
+        }
+
+        //method read() -> (value){
+        //    log "info": "Reading Config register:";
+        //    log "info": "EN = %d", $config.EN;
+        //    log "info": "SEL = %d", $config.SEL;
+        //    value = this;
+        //}
+    }
+
+    register inputRegister0    size 4 @ 0x0004 is (myReadWrite);
+    register inputRegister1    size 4 @ 0x0008 is (myReadWrite);
+    register inputRegister2    size 4 @ 0x000c is (myReadWrite);
+    register inputRegister3    size 4 @ 0x0010 is (myReadWrite);
+
+    register outputRegister   size 4 @ 0x0014 {
         method read() -> (value){
-            log "info": "Reading from myregister ...";            
+            log "info": "Reading inputRegister  ...";            
             value = $this;                 
             $reads_count = $reads_count + 1;       
         }
 
         method write(value) {
-            log "info": "Writing into myregister ...";
-            $this = value;
+            log "error": "inputRegister cannot be written.";             
         }
-    }
+    }    
 }
