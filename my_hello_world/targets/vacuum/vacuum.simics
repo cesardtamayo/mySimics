@@ -3,16 +3,46 @@ run-command-file "/home/cesar/simics/simics-6.0.157/targets/vacuum/vacuum.simics
 
 load-module simple_device
 @SIM_create_object("simple_device", "dev1")
-phys_mem.add-map dev1.bank.regs 0x1000 0x100
+
+$BASE_address = 4096; 
+
+phys_mem.add-map dev1.bank.regs $BASE_address 0x100
+
+# Initializing variables for easier read:
+$inputRegister0Value = 10;
+$inputRegister1Value = 11;
+$inputRegister2Value = 12;
+$inputRegister3Value = 13;
 
 # Updating input registers:
-phys_mem.write 0x1004 0x0a -l
-phys_mem.write 0x1008 0x0b -l
-phys_mem.write 0x100c 0x0c -l
-phys_mem.write 0x1010 0x0d -l
+phys_mem.write ($BASE_address + 4)  $inputRegister0Value -l
+phys_mem.write ($BASE_address + 8)  $inputRegister1Value -l
+phys_mem.write ($BASE_address + 12) $inputRegister2Value -l
+phys_mem.write ($BASE_address + 16) $inputRegister3Value -l
 
 # Updating config register (EN = 1, SEL = 1):
-phys_mem.write 0x1000 0x03 -l
+phys_mem.write $BASE_address 0x03 -l
 
-# Checking output register:
-phys_mem.read 0x1014 -l
+echo "Checking output register match with proper input register"
+$outputRegisterAddress = ($BASE_address + 20)
+$outputRegister = (phys_mem.read $outputRegisterAddress -l)
+
+if ($outputRegister == $inputRegister1Value){
+    echo ("OutputRegister matches InputRegister1 with value " + $outputRegister)
+}else{
+    echo "ERROR: OutputRegister $outputRegister DOES NOT match InputRegister1 $inputRegister1Value"
+}
+
+echo "Updating input register without changing selection"
+$inputRegister1Value = 31
+phys_mem.write ($BASE_address + 8)  $inputRegister1Value -l
+
+echo "Checking output register match with proper input register"
+$outputRegisterAddress = ($BASE_address + 20)
+$outputRegister = (phys_mem.read $outputRegisterAddress -l)
+
+if ($outputRegister == $inputRegister1Value){
+    echo ("OutputRegister matches InputRegister1 with value " + $outputRegister)
+}else{
+    echo "ERROR: OutputRegister $outputRegister DOES NOT match InputRegister1 $inputRegister1Value"
+}
