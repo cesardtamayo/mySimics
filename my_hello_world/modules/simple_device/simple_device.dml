@@ -49,7 +49,7 @@ bank regs{
     method updateOutputRegister(){
         // This function updates the output register based on the register_selection value
 
-        log "info": "Updating output register to input number %i", $register_selection;                
+        // log "info": "Updating output register to input number %i", $register_selection;                
         switch($register_selection){
             case 0:
                 $outputRegister = $inputRegister0;
