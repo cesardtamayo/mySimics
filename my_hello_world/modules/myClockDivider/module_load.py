@@ -20,7 +20,14 @@ cli.new_info_command(class_name, get_info)
 
 def get_status(obj):
     # USER-TODO: Return something useful here
-    return [("Registers",
-             [("Counter", obj.regs_counter)])]
+    return [("Connections",
+                [
+                    ("Plugin", obj.plugin.mySignal)
+                ]),
+            ("Register Bank", 
+                [
+                    ("counter", obj.regs_counter)                    
+                ]
+            )]
 
 cli.new_status_command(class_name, get_status)

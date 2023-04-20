@@ -14,8 +14,17 @@ parameter documentation = "Simple module to learn about connections.";
 import "/home/cesar/mySimics/my_hello_world/include/myInterface.dml";
 import "utility.dml";
 
+attribute mySignal "simple signal"{
+  parameter allocate_type = "uint16";
+}
+
 implement myInterface {
-    method hello {
-        log "info": "HELLO THERE!";
-    }
+  
+  method raise_signal(){
+    $mySignal = 1;
+  }
+    
+  //method hello {
+  //    log "info": "HELLO THERE!";
+  //}
 }

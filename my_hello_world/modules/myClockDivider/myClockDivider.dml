@@ -17,6 +17,7 @@ import "/home/cesar/mySimics/my_hello_world/include/myInterface.dml";
 
 // USER-TODO: add connect definitions here, if needed
 connect plugin {
+    parameter documentation = "Test input connection to learn Simics";
     interface myInterface {
         parameter required = true;        
     }
@@ -33,7 +34,7 @@ bank regs {
         method read() -> (value){
             log "info": "inside read() ...";            
             value = $this;
-            $plugin.myInterface.hello();
+            // $plugin.myInterface.hello();
         }
     } 
 }

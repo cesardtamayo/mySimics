@@ -14,6 +14,9 @@ phys_mem.add-map myDivider.bank.regs base=$BASE_address length=0x1000;
 # and the interface tries to access an empty memory space.
 myDivider->plugin = myPlugin;
 
+# writing a number to the register
 phys_mem.write 0x1000 5 -l
+
+myDivider.status
 
 # phys_mem.read ($BASE_address + 8) -l
