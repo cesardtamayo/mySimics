@@ -1,0 +1,54 @@
+/*
+  © 2010 Intel Corporation
+*/
+
+// myClockDivider.dml - Skeleton code to base new DML device modules on
+
+dml 1.2;
+
+device myClockDivider;
+
+parameter desc = "Clock divider";
+parameter documentation = "A simple clock divider to learn Simics inter-device connection.";
+
+import "utility.dml";
+import "/home/cesar/mySimics/my_hello_world/include/myInterface.dml";
+// import "simics/devs/signal.dml";
+
+// USER-TODO: add connect definitions here, if needed
+connect plugin {
+    interface myInterface {
+        parameter required = true;        
+    }
+}
+
+// USER-TODO: add attribute definitions here, if needed
+attribute divider "Integer value used to reset internal counter"{
+    parameter allocate_type = "int32";    
+}
+
+// Basic bank declaration
+bank regs {      
+    register counter size 4 @ 0x0000 "A simple counter"{
+        method read() -> (value){
+            log "info": "inside read() ...";            
+            value = $this;
+            $plugin.myInterface.hello();
+        }
+    } 
+}
+
+// USER-TODO: add implement and port declarations here, if needed
+
+// USER-TODO: add event declarations here, if needed
+
+// USER-TODO: add common methods here, if needed
+
+// USER-TODO: add templates here, if needed
+
+// USER-TODO: Add init() and post_init() methods here, if needed.
+// init() will be run to set the empty state of the model, before any
+// configuration or checkpointed attributes are set.  post_init() is run after
+// all configuration attributes have been set.  This happens both when the
+// initial configuration is set and when the configuration is loaded from a
+// checkpoint.

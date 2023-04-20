@@ -10,7 +10,6 @@ parameter documentation = "Learning Simics following Model Builder User's Guide.
 
 // import "utility.dml";
 
-
 // This template is used to implement the write() for the MUX input registers
 // because they need to update the output register if they are being "selected"
 // at the time of update:

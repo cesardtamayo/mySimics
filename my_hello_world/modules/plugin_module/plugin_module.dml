@@ -1,0 +1,21 @@
+/*
+  © 2010 Intel Corporation
+*/
+
+// plugin_module.dml - Skeleton code to base new DML device modules on
+
+dml 1.2;
+
+device plugin_module;
+
+parameter desc = "Plugin module";
+parameter documentation = "Simple module to learn about connections.";
+
+import "/home/cesar/mySimics/my_hello_world/include/myInterface.dml";
+import "utility.dml";
+
+implement myInterface {
+    method hello {
+        log "info": "HELLO THERE!";
+    }
+}

@@ -1,0 +1,19 @@
+# Auto-generated file. Any changes will be overwritten!
+run-command-file "/home/cesar/simics/simics-6.0.157/targets/vacuum/vacuum.simics"
+
+load-module myClockDivider
+load-module plugin_module
+@SIM_create_object("myClockDivider", "myDivider")
+@SIM_create_object("plugin_module", "myPlugin")
+
+$BASE_address = 4096; 
+
+phys_mem.add-map myDivider.bank.regs base=$BASE_address length=0x1000;
+
+# Without this I get SegFault error because the plugin object wasn't referenced 
+# and the interface tries to access an empty memory space.
+myDivider->plugin = myPlugin;
+
+phys_mem.write 0x1000 5 -l
+
+# phys_mem.read ($BASE_address + 8) -l
