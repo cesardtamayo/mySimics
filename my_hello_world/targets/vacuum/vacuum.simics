@@ -1,31 +1,24 @@
 # Auto-generated file. Any changes will be overwritten!
 run-command-file "/home/cesar/simics/simics-6.0.157/targets/vacuum/vacuum.simics"
 
-load-module simple_device
-@SIM_create_object("simple_device", "dev1")
+load-module mux_device
+@SIM_create_object("mux_device", "dev1")
 
 dev1.info
 
+# Updating input registers:
+dev1->regs_inputRegister0 = 10;
+dev1->regs_inputRegister1 = 11;
+dev1->regs_inputRegister2 = 12;
+dev1->regs_inputRegister3 = 13;
 
 $BASE_address = 4096; 
-
 phys_mem.add-map dev1.bank.regs $BASE_address 0x100
 
-# Initializing variables for easier read:
-$inputRegister0Value = 10;
-$inputRegister1Value = 11;
-$inputRegister2Value = 12;
-$inputRegister3Value = 13;
-
-# Updating input registers:
-phys_mem.write ($BASE_address + 4)  $inputRegister0Value -l
-phys_mem.write ($BASE_address + 8)  $inputRegister1Value -l
-phys_mem.write ($BASE_address + 12) $inputRegister2Value -l
-phys_mem.write ($BASE_address + 16) $inputRegister3Value -l
 
 # Updating config register (EN = 1, SEL = 1):
 phys_mem.write $BASE_address 0x03 -l
-dev1.status
+dev1.status 
 
 echo "Updating input register without changing selection"
 $inputRegister1Value = 31
