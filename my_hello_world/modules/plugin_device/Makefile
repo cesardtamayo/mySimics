@@ -7,8 +7,8 @@
 # See Simics Model Builder User's Guide for more details on what to put here.
 #
 
-MODULE_CLASSES = myClockDivider
-SRC_FILES = myClockDivider.dml
+MODULE_CLASSES = plugin_device
+SRC_FILES = plugin_device.dml
 PYTHON_FILES = module_load.py
 
 SIMICS_API := 6

@@ -1,0 +1,46 @@
+/*
+  © 2010 Intel Corporation
+*/
+
+// plugin_device.dml - Skeleton code to base new DML device modules on
+
+dml 1.2;
+
+device plugin_device;
+
+parameter desc = "Plugin module";
+parameter documentation = "Simple module to learn about connections.";
+
+import "/home/cesar/mySimics/my_hello_world/include/myInterface.dml";
+import "utility.dml";
+
+attribute mySignal "simple signal"{
+  parameter allocate_type = "uint16";
+}
+
+bank regs {
+  register bus size 4 @ 0x0000 "Simple 4-bit bus" {
+    method read() -> (value){
+      log "info": "Reading bus";
+      value = $this;
+    }
+    method write(value){
+      log "info": "Updating bus";
+      $this = value;
+    }
+  }
+}
+
+implement myInterface {
+  
+  method raise_signal(){
+    $mySignal = 1;
+    log "info": "mySignal raised";
+  }
+
+  method lower_signal(){
+    $mySignal = 0;
+    log "info": "mySignal lowered";
+  }
+    
+}

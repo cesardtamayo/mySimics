@@ -2,7 +2,7 @@
 
 import cli
 
-class_name = 'plugin_module'
+class_name = 'plugin_device'
 
 #
 # ------------------------ info -----------------------
@@ -20,7 +20,14 @@ cli.new_info_command(class_name, get_info)
 
 def get_status(obj):
     # USER-TODO: Return something useful here
-    return [("Registers",
-             [("Counter", obj.regs_counter)])]
+    return [
+            ("Attributes",[
+                ("mySignal", obj.mySignal)
+                ]
+            ), 
+            ("Registers",[
+                ("Bus", obj.regs_bus)
+                ]
+            )]
 
 cli.new_status_command(class_name, get_status)

@@ -7,8 +7,8 @@
 # See Simics Model Builder User's Guide for more details on what to put here.
 #
 
-MODULE_CLASSES = plugin_module
-SRC_FILES = plugin_module.dml
+MODULE_CLASSES = divider_device
+SRC_FILES = divider_device.dml
 PYTHON_FILES = module_load.py
 
 SIMICS_API := 6

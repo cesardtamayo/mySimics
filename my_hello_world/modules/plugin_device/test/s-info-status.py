@@ -3,14 +3,14 @@
 import info_status
 import simics
 import stest
-import plugin_module_common
+import plugin_device_common
 
 # Verify that info/status commands have been registered for all
 # classes in this module.
-info_status.check_for_info_status(['plugin_module'])
+info_status.check_for_info_status(['plugin_device'])
 
 # Create an instance of each object defined in this module
-dev = plugin_module_common.create_plugin_module()
+dev = plugin_device_common.create_plugin_device()
 
 # Run info and status on each object. It is difficult to test whether
 # the output is informative, so we just check that the commands

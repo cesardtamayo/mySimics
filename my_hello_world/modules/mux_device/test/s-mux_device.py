@@ -3,11 +3,11 @@
 import dev_util
 import conf
 import stest
-import simple_device_common
+import mux_device_common
 
 # Create an instance of the device to test
-# dev = simple_device_common.create_simple_device()
-dev = pre_conf_object('dev', 'simple_device')
+# dev = mux_device_common.create_mux_device()
+dev = pre_conf_object('dev', 'mux_device')
 SIM_add_configuration([dev], None)
 dev = conf.dev
 

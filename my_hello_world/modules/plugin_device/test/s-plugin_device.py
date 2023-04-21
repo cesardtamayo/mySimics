@@ -3,9 +3,9 @@
 import dev_util
 import conf
 import stest
-import plugin_module_common
+import plugin_device_common
 
 # Create an instance of the device to test
-dev = plugin_module_common.create_plugin_module()
+dev = plugin_device_common.create_plugin_device()
 
 # Write your tests here

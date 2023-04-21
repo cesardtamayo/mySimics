@@ -3,14 +3,14 @@
 import info_status
 import simics
 import stest
-import myClockDivider_common
+import divider_device_common
 
 # Verify that info/status commands have been registered for all
 # classes in this module.
-info_status.check_for_info_status(['myClockDivider'])
+info_status.check_for_info_status(['divider_device'])
 
 # Create an instance of each object defined in this module
-dev = myClockDivider_common.create_myClockDivider()
+dev = divider_device_common.create_divider_device()
 
 # Run info and status on each object. It is difficult to test whether
 # the output is informative, so we just check that the commands

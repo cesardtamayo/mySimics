@@ -3,9 +3,9 @@
 import dev_util
 import conf
 import stest
-import myClockDivider_common
+import divider_device_common
 
 # Create an instance of the device to test
-dev = myClockDivider_common.create_myClockDivider()
+dev = divider_device_common.create_divider_device()
 
 # Write your tests here

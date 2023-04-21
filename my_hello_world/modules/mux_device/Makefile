@@ -7,8 +7,8 @@
 # See Simics Model Builder User's Guide for more details on what to put here.
 #
 
-MODULE_CLASSES = simple_device
-SRC_FILES = simple_device.dml
+MODULE_CLASSES = mux_device
+SRC_FILES = mux_device.dml
 PYTHON_FILES = module_load.py
 
 SIMICS_API := 6

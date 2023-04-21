@@ -2,11 +2,11 @@
   © 2010 Intel Corporation
 */
 
-// myClockDivider.dml - Skeleton code to base new DML device modules on
+// divider_device.dml - Skeleton code to base new DML device modules on
 
 dml 1.2;
 
-device myClockDivider;
+device divider_device;
 
 parameter desc = "Clock divider";
 parameter documentation = "A simple clock divider to learn Simics inter-device connection.";
@@ -20,7 +20,7 @@ connect plugin {
     parameter documentation = "Test input connection to learn Simics";
     interface myInterface {
         parameter required = true;        
-    }
+    }    
 }
 
 // USER-TODO: add attribute definitions here, if needed
@@ -53,3 +53,5 @@ bank regs {
 // all configuration attributes have been set.  This happens both when the
 // initial configuration is set and when the configuration is loaded from a
 // checkpoint.
+
+

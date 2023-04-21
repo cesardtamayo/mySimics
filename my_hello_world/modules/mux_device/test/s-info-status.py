@@ -3,14 +3,14 @@
 import info_status
 import simics
 import stest
-import simple_device_common
+import mux_device_common
 
 # Verify that info/status commands have been registered for all
 # classes in this module.
-info_status.check_for_info_status(['simple_device'])
+info_status.check_for_info_status(['mux_device'])
 
 # Create an instance of each object defined in this module
-dev = simple_device_common.create_simple_device()
+dev = mux_device_common.create_mux_device()
 
 # Run info and status on each object. It is difficult to test whether
 # the output is informative, so we just check that the commands

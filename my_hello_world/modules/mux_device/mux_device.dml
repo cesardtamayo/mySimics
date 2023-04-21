@@ -4,11 +4,11 @@ dml 1.2;
 // Add more registers and reference each other in their functionality.
 // Flags with count_order or things like that
 
-device simple_device;
+device mux_device;
 parameter desc = "Simple device to learn Simics";
 parameter documentation = "Learning Simics following Model Builder User's Guide.";
 
-// import "utility.dml";
+import "utility.dml";
 
 // This template is used to implement the write() for the MUX input registers
 // because they need to update the output register if they are being "selected"
@@ -33,23 +33,13 @@ attribute reads_count "An integer attribute that counts the number of reads."{
     }
 }
 
-// Is there a better way to do this??? 
-attribute register_selection "Current SEL value"{
-    parameter documentation = "Created to be able to reference when the input registers are updated.";
-    parameter allocate_type = "int32";
-
-    method after_set {
-        log "info": "register_selection updated";        
-    }
-}
-
 bank regs{
 
     method updateOutputRegister(){
         // This function updates the output register based on the register_selection value
 
-        // log "info": "Updating output register to input number %i", $register_selection;                
-        switch($register_selection){
+        log "info": "Updating output register to input number %i", $config.SEL;                
+        switch($config.SEL){
             case 0:
                 $outputRegister = $inputRegister0;
                 break;
@@ -69,10 +59,11 @@ bank regs{
 
     register config         size 4 @ 0x0000 {
         field EN    @[0]    "Enabled";
-        field SEL   @[2:1]  "Register selection" {
+        field SEL   @[2:1] is (read_write) "Register selection" {
+            parameter allocate_type = "int16";
             method write(value){
-                log "info": "updating register_selection to %d", value;
-                $register_selection = value;                
+                log "info": "Updating SEL to %d", value;                             
+                $this = value;
                 $updateOutputRegister();                
             }
         }
@@ -84,7 +75,7 @@ bank regs{
     register inputRegister3    size 4 @ 0x0010 is (myInputMuxWrite);
 
     register outputRegister   size 4 @ 0x0014 {
-        method read() -> (value){
+        method read() -> (value){            
             log "info": "Reading outputRegister  ...";            
             value = $this;                 
             $reads_count = $reads_count + 1;       
@@ -94,4 +85,6 @@ bank regs{
             log "error": "outputRegister cannot be written.";             
         }
     }    
+
+    
 }

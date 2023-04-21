@@ -2,7 +2,7 @@
 
 import cli
 
-class_name = 'myClockDivider'
+class_name = 'divider_device'
 
 #
 # ------------------------ info -----------------------
@@ -22,7 +22,11 @@ def get_status(obj):
     # USER-TODO: Return something useful here
     return [("Connections",
                 [
-                    ("Plugin", obj.plugin.mySignal)
+                    ("Plugin-Bus", obj.plugin.regs_bus)
+                ]),
+            ("Attributes",
+                [
+                    ("Divider", obj.divider)
                 ]),
             ("Register Bank", 
                 [

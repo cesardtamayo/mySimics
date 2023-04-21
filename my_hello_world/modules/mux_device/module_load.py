@@ -2,7 +2,7 @@
 
 import cli
 
-class_name = 'simple_device'
+class_name = 'mux_device'
 
 #
 # ------------------------ info -----------------------
@@ -23,11 +23,12 @@ def get_status(obj):
     # USER-TODO: Return something useful here    
     return [("Attributes",
                 [
-                    ("reads_count", obj.reads_count),
-                    ("register_selection", obj.register_selection)
-                ]),
+                    ("reads_count", obj.reads_count)                    
+                ]),            
             ("Register Bank", 
                 [
+                    ("config", obj.regs_config),
+                    # ("SEL", obj.bank.regs.config.SEL),
                     ("inputRegister0", obj.regs_inputRegister0),
                     ("inputRegister1", obj.regs_inputRegister1),
                     ("inputRegister2", obj.regs_inputRegister2),
