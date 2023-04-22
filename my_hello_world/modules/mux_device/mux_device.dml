@@ -57,9 +57,9 @@ bank regs{
         }
     }   
 
-    register config         size 4 @ 0x0000 {
-        field EN    @[0]    "Enabled";
-        field SEL   @[2:1] is (read_write) "Register selection" {
+    register config         size 2 @ 0x0000 {
+        field EN    @[0]    is (read_write)     "Enabled";
+        field SEL   @[3:1]  is (read_write)     "Register selection" {            
             parameter allocate_type = "int16";
             method write(value){
                 log "info": "Updating SEL to %d", value;                             
@@ -67,14 +67,15 @@ bank regs{
                 $updateOutputRegister();                
             }
         }
+        
     }
 
-    register inputRegister0    size 4 @ 0x0004 is (myInputMuxWrite);
-    register inputRegister1    size 4 @ 0x0008 is (myInputMuxWrite);
-    register inputRegister2    size 4 @ 0x000c is (myInputMuxWrite);
-    register inputRegister3    size 4 @ 0x0010 is (myInputMuxWrite);
+    register inputRegister0    size 2 @ 0x0002 is (myInputMuxWrite);
+    register inputRegister1    size 2 @ 0x0004 is (myInputMuxWrite);
+    register inputRegister2    size 2 @ 0x0006 is (myInputMuxWrite);
+    register inputRegister3    size 2 @ 0x0008 is (myInputMuxWrite);
 
-    register outputRegister   size 4 @ 0x0014 {
+    register outputRegister   size 2 @ 0x000a {
         method read() -> (value){            
             log "info": "Reading outputRegister  ...";            
             value = $this;                 

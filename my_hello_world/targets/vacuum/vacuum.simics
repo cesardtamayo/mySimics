@@ -12,26 +12,31 @@ dev1->regs_inputRegister1 = 11;
 dev1->regs_inputRegister2 = 12;
 dev1->regs_inputRegister3 = 13;
 
-$BASE_address = 4096; 
+$reg_size = 2;
+$BASE_address = 0x1000; 
 phys_mem.add-map dev1.bank.regs $BASE_address 0x100
 
-
 # Updating config register (EN = 1, SEL = 1):
-phys_mem.write $BASE_address 0x03 -l
+
+set-device-reg dev1.bank.regs.config "SEL" 1
+phys_mem.write $BASE_address
 dev1.status 
+phys_mem.read ($BASE_address + 0xa) -l size=$reg_size
 
 echo "Updating input register without changing selection"
-$inputRegister1Value = 31
-phys_mem.write ($BASE_address + 8)  $inputRegister1Value -l
+dev1->regs_inputRegister1 = 31;
 dev1.status
 
 echo "Updating config register (EN = 1, SEL = 2):"
-phys_mem.write $BASE_address 0x05 -l
+set-device-reg dev1.bank.regs.config "SEL" 2
 dev1.status
 
 echo "Checking reads_count functionality"
-phys_mem.read ($BASE_address + 20) -l
-phys_mem.read ($BASE_address + 20) -l
-phys_mem.read ($BASE_address + 20) -l
+phys_mem.read ($BASE_address + 0x000a) -l size=2
+phys_mem.read ($BASE_address + 0x000a) -l size=2
+phys_mem.read ($BASE_address + 0x000a) -l size=2
 dev1.status
 
+print-device-regs dev1
+
+phys_mem.examine-memory $BASE_address size=12 # 6 registers x size 2 bytes

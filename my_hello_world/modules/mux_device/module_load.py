@@ -28,7 +28,6 @@ def get_status(obj):
             ("Register Bank", 
                 [
                     ("config", obj.regs_config),
-                    # ("SEL", obj.bank.regs.config.SEL),
                     ("inputRegister0", obj.regs_inputRegister0),
                     ("inputRegister1", obj.regs_inputRegister1),
                     ("inputRegister2", obj.regs_inputRegister2),
